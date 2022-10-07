@@ -1,0 +1,56 @@
+{% extends 'main/base.html' %}
+
+{%block title%}
+  KKK
+{%endblock%}
+
+{%block content %}
+<center>
+  <h1> Global </h1>
+  <p>Nigggaaa</p>
+</center>
+<main>
+  <div class="row row-cols-1 row-cols-md-4 mb-3 text-center">
+  {%if buy%}
+    {% for i in buy%}
+      <div class="col">
+              <div class="card mb-4 rounded-3 shadow-sm">
+                <div class="card-header py-3">
+                  <h4 class="my-0 fw-normal">
+                    {%if i.title|length < 5 %}
+                      cheap
+                    {%elif i.title|length == 5%}
+                      middle
+                    {%else%}
+                      expensive
+                    {%endif%}
+                  </h4>
+                </div>
+                <div class="card-body">
+                  <h1 class="card-title pricing-card-title">${{i.title|length}}<small class="text-muted fw-light">/mo</small></h1>
+                  <ul class="list-unstyled mt-3 mb-4">
+                    <li>{{i.title}}</li>
+                    <li>{{i.Name_from_list}}</li>
+                  </ul>
+                  <form method="post">
+                    {% csrf_token %}
+                    <button type="submit" value="{{i.id}}" class="btn btn-warning" name="buy_btn">Buy right now</button>
+                  </form>
+
+                </div>
+              </div>
+            </div>
+
+    {%endfor%}
+  {%else%}
+    <p>Зачистили всех!</p>
+  {%endif%}
+</div>
+
+
+
+
+  </main>
+
+{%endblock%}
+
