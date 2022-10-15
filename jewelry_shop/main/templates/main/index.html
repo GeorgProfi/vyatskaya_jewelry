@@ -1,8 +1,15 @@
 {% extends 'main/base.html' %}
+{%load static%}
 
 {%block title%}
   KKK
 {%endblock%}
+<div>
+  {%if Collection.image%}
+  <img src="{{MEDIA_URL}}{{main.image.url}}">
+  {%endif%}
+</div>
+
 
 {%block content %}
 <center>
@@ -25,6 +32,7 @@
                   <ul class="list-unstyled mt-3 mb-4">
                     <li>{{i.title}}</li>
                     <li>{{i.Name_from_list}}</li>
+                    <td><img src="static\main\img\{{ i.photo }}" width="120" height="120"  /></td>
                   </ul>
                   <form method="post">
                     {% csrf_token %}
@@ -35,10 +43,13 @@
               </div>
             </div>
 
+
     {%endfor%}
   {%else%}
+
     <p>Зачистили всех!</p>
   {%endif%}
+
 </div>
 
 

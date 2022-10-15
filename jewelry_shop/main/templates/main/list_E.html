@@ -1,19 +1,10 @@
-{% extends 'main/base.html' %}
+{%load static%}
 
-{%block title%}
-  KKK
-{%endblock%}
-
-{%block content %}
-    <h1> Сдайте нам Негров </h1>
-    <form method="post">
-        {%csrf_token%}
-        {{form.title}}<br>
-        {{form.Name_from_list}}<br>
-
-        <button type ="submit" class="btn btn-success">Сдать</button>
-    </form>
-
-
-{%endblock%}
+	{% for img in images %}
+      <tr>
+        <td>{{img.title}}</td>
+          <td>{{img.img}}</td>
+		<td><img src="static\main\img{{ img.img.url }}" width="120" /></td>
+      </tr>
+    {% endfor %}
 

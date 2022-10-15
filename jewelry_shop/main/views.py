@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from .models import Collection
+from .models import Collection ,GetImage
 
 
 def catalog(request):
@@ -11,4 +11,13 @@ def catalog(request):
     return render(request, 'main/index.html', {'Catalog': Catalog})
 
 def about(reqest):
-    return render(reqest, 'main/about.html')
+    allimages = GetImage.objects.all()
+    return render(reqest, 'main/about.html', {'images': allimages})
+def view_img(reqest):
+    allimages = GetImage.objects.all()
+    return render(reqest, 'main/list_E.html', {'images': allimages})
+
+def display_images(request):
+    # getting all the objects of hotel.
+    allimages = GetImage.objects.all()
+    return render(request, 'show.html', {'images': allimages})
