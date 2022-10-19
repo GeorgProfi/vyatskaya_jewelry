@@ -13,7 +13,8 @@ urlpatterns = [
     path('', views.catalog,name='Global' ),
     path('about', views.about,name='about' ),
     path('show', views.display_images, ),
-    path('view_img', views.view_img,name = 'view_img'),
+
+    path('list_E', views.list_E,name = 'list_E'),
 
 ]
 

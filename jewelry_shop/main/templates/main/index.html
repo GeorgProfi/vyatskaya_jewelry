@@ -4,7 +4,7 @@
 {%block title%}
   KKK
 {%endblock%}
-<div>
+<div xmlns="http://www.w3.org/1999/html">
   {%if Collection.image%}
   <img src="{{MEDIA_URL}}{{main.image.url}}">
   {%endif%}
@@ -16,12 +16,13 @@
 <main >
   <div class="row row-cols-1 row-cols-md-4 text-center outer ">
 
+
   {%if Catalog%}
     {% for i in Catalog%}
       <div class="col">
               <div class="card mb-4 shadow-sm ">
-                <div class="card-header py-3" style=" height : 100px;">
-                  <h4 class="my-0 fw-normal " >
+                <div class="card-header py-3" style="display: flex; justify-content: center; align-items: center; height : 100px ;">
+                  <h4 class="my-0 fw-normal">
                     {{i.type}}
                   </h4>
                 </div>
@@ -34,9 +35,8 @@
 
                   <h1 class="card-title pricing-card-title " style="margin-top:20px">{{i.price_field}} ₽<small class="text-muted fw-light "></small></h1>
                   </ul>
-                    <form method="post">
-                    {% csrf_token %}
-                    <button type="submit" value="{{i.id}}" class="btn " style="color:#fff; background-color: RGB(100,100,100)" name="buy_btn">Дополнительно</button>
+                    <form action="{% url 'list_E' %}">
+                      <button  type="submit" class="btn" value="" style="color:#fff; background-color: RGB(100,100,100)" >Дополнительно</button>
                   </form>
 
 

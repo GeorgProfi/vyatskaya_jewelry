@@ -1,10 +1,1 @@
-{%load static%}
-
-	{% for img in images %}
-      <tr>
-        <td>{{img.title}}</td>
-          <td>{{img.img}}</td>
-		<td><img src="static\main\img{{ img.img.url }}" width="120" /></td>
-      </tr>
-    {% endfor %}
-
+{% extends 'main/base.html' %}
