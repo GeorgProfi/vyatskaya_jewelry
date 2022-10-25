@@ -1,1 +1,0 @@
-# vyatskaya_jewelry
