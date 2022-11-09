@@ -1,9 +1,8 @@
-
 from django.db import models
 
 
 class ChapterTable(models.Model):
-    chapter = models.CharField(primary_key=True, null=False ,max_length=50)
+    chapter = models.CharField(primary_key=True,max_length = 100)
     sum = models.IntegerField(blank=True, null=True)
 
     class Meta:
@@ -12,39 +11,41 @@ class ChapterTable(models.Model):
 
 
 class Collection(models.Model):
-    id = models.IntegerField(db_column='id', blank=True, null=True)
-    type = models.CharField(primary_key=True, null=False,max_length=50)
-    metal = models.CharField(blank=True, null=True,max_length=50)
-    gems = models.CharField(blank=True, null=True,max_length=50)
+    type = models.CharField(max_length = 100)
+    metal = models.CharField(blank=True, null=True,max_length = 100)
+    gems = models.CharField(blank=True, null=True,max_length = 100)
     mass = models.TextField(blank=True, null=True)  # This field type is a guess.
     price = models.IntegerField(db_column='price ', blank=True, null=True)  # Field renamed to remove unsuitable characters. Field renamed because it ended with '_'.
     volume_product = models.IntegerField(blank=True, null=True)
     chapter = models.ForeignKey(ChapterTable, models.DO_NOTHING, db_column='chapter', blank=True, null=True)
-    photo = models.TextField(blank=True, null=True)  # This field type is a guess.
-    description = models.TextField(blank=True, null=True)
-
+    photo_kit = models.ForeignKey('Gallary', models.DO_NOTHING, db_column='photo_kit', blank=True, null=True)
+    description = models.TextField(blank=True, null=True)  # This field type is a guess.
 
     class Meta:
         managed = False
         db_table = 'collection'
 
-
-class Gallary(models.Model):
-    title = models.CharField(max_length=50)
-    img = models.CharField(max_length=50)
-
-    class Meta:
-        managed = False
-        db_table = 'gallary'
 class GetImage(models.Model):
     title = models.CharField(max_length=100)
     img = models.ImageField(upload_to='main/img')
     class Meta:
         db_table = "gallary"
 
+class Gallary(models.Model):
+    main = models.TextField(blank=True, null=True)  # This field type is a guess.
+    minor_1 = models.TextField(blank=True, null=True)  # This field type is a guess.
+    minor_2 = models.TextField(blank=True, null=True)  # This field type is a guess.
+    minor_3 = models.TextField(blank=True, null=True)  # This field type is a guess.
+    minor_4 = models.TextField(blank=True, null=True)  # This field type is a guess.
+    minor_5 = models.TextField(blank=True, null=True)  # This field type is a guess.
+
+    class Meta:
+        managed = False
+        db_table = 'gallary'
+
 
 class MethodDeliveryTable(models.Model):
-    method_delivery = models.CharField(primary_key=True, null=False,max_length=50)
+    method_delivery = models.CharField(primary_key=True,max_length = 100)
     price_delivery = models.IntegerField(blank=True, null=True)
 
     class Meta:
@@ -55,9 +56,9 @@ class MethodDeliveryTable(models.Model):
 class Order(models.Model):
     order_id = models.TextField(primary_key=True, blank=True, null=False)  # This field type is a guess.
     method_delivery = models.ForeignKey(MethodDeliveryTable, models.DO_NOTHING, db_column='method_delivery', blank=True, null=True)
-    product = models.ForeignKey(Collection, models.DO_NOTHING, db_column='product', blank=True, null=True)
+    product = models.CharField(blank=True, null=True, max_length = 100)
     price_order = models.IntegerField(blank=True, null=True)
-    address = models.CharField(blank=True, null=True,max_length=50)
+    address = models.CharField(blank=True, null=True, max_length = 100)
 
     class Meta:
         managed = False
@@ -65,9 +66,9 @@ class Order(models.Model):
 
 
 class User(models.Model):
-    user_id = models.TextField(primary_key=True, blank=True, null=False)  # This field type is a guess.
-    login = models.CharField(blank=True, null=True,max_length=50)
-    order = models.ForeignKey(Order, models.DO_NOTHING, blank=True, null=False)
+    user_id = models.TextField(primary_key=True, blank=True, null=False, max_length = 100)  # This field type is a guess.
+    login = models.CharField(blank=True, null=True, max_length = 100)
+    order = models.ForeignKey(Order, models.DO_NOTHING, blank=True)
 
     class Meta:
         managed = False
