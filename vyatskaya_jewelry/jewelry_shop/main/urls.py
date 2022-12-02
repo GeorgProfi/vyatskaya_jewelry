@@ -15,6 +15,7 @@ urlpatterns = [
     path('show', views.display_images, ),
     path('<int:product_id>',views.detail, name='detail'),
     path('catalog', views.catalog,name = 'catalog'),
+    path('order',views.oreder,name = 'order')
 
 ]
 

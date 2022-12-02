@@ -24,3 +24,6 @@ def display_images(request):
     # getting all the objects of hotel.
     allimages = GetImage.objects.all()
     return render(request, 'show.html', {'images': allimages})
+
+def oreder(reqest):
+    return render(reqest, 'main/order.html')

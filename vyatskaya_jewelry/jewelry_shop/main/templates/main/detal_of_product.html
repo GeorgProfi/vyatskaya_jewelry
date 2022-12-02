@@ -28,6 +28,17 @@
 				<div class="wrapper row">
 					<div class="preview col-md-6">
 
+						<script lang="JavaScript">
+function chg(id){
+if (document.getElementById(id).src.indexOf("1.jpg")>0){
+document.getElementById(id).src="3.jpg"
+}else{
+document.getElementById(id).src="1.jpg"
+}
+}
+</script>
+<img src="1.jpg" id="img_1" onClick="chg(this.id)">
+
 						<div class="preview-pic tab-content">
 						  <div class="tab-pane active" id="pic-1"><img src="static\main\img\{{ product.photo_kit.main }}" /></div>
 						  <div class="tab-pane" id="pic-2"><img src="static\main\img\{{ i.photo_kit.minor_1 }}" /></div>
@@ -40,6 +51,7 @@
 						  <li><a data-target="#pic-3" data-toggle="tab"><img src="static\main\img\{{ product.photo_kit.minor_2 }}" /></a></li>
 						  <li><a data-target="#pic-4" data-toggle="tab"><img src="static\main\img\{{ product.photo_kit.minor_3 }}" /></a></li>
 						</ul>
+
 
 					</div>
 					<div class="details col-md-6">
